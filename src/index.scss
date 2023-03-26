@@ -1,0 +1,321 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Миксины
+@mixin anim($time, $delay) {-webkit-transition: all $time ease $delay; -moz-transition: all $time ease $delay; -ms-transition: all $time ease $delay; -o-transition: all $time ease $delay; transition: all $time ease $delay;}
+@mixin anim_cubic ($time, $delay) {-webkit-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay; -moz-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay; -ms-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay; -o-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay; transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;}
+@mixin rotate ($deg) {-webkit-transform: rotate($deg); -moz-transform: rotate($deg); -ms-transform: rotate($deg); -o-transform: rotate($deg); transform: rotate($deg);}
+@mixin scale ($num) {-webkit-transform: scale($num); -moz-transform: scale($num); -ms-transform: scale($num); -o-transform: scale($num); transform: scale($num);}
+@mixin skew ($num) {-webkit-transform: skewX($num); -moz-transform: skewX($num); -ms-transform: skewX($num); -o-transform: skewX($num); transform: skewX($num);}
+@mixin cnt($h) {display: flex; flex-direction: column; height: $h; text-align: center; align-items: stretch; justify-content: center;}
+@mixin tr($x, $y, $z) {transform: translate3d($x, $y, $z);}
+@mixin flexbox() {display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; font-size: 0;}
+@mixin flexorder($val) {-webkit-box-ordinal-group: $val; -moz-box-ordinal-group: $val; -ms-flex-order: $val; -webkit-order: $val; order: $val;}
+
+// Шрифты
+
+// Подключаем шрифты
+
+//font-display: swap;
+
+// Шрифт по умолчанию
+
+$fontfamily: 'Alegreya Sans', sans-serif;
+
+// Переменные
+
+$minwidth: 320px;
+$mw: 1330;
+$md1: $mw+12;
+$md2: 992.98;
+$md3: 767.98;
+$md4: 479.98;
+
+// Обнуление, общие параметры
+
+* {padding: 0; margin: 0; border: 0;}
+*, *:before, *:after {-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+:focus, :active {outline: none;}
+a:focus, a:active {outline: none;}
+aside, nav, footer, header, section {display: block;}
+html, body {height: 100%; margin: 0; padding: 0; min-width: $minwidth; position: relative; width: 100%; color: #131313;}
+body {font-size: 100%; line-height: 1; font-size: 14px; font-family: $fontfamily;-ms-text-size-adjust: 100%;-moz-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+    &.lock{overflow: hidden;
+        @media (max-width:$md3+px) {
+            width: 100%;
+            position: fixed;
+            overflow: hidden;
+        }
+    }
+}
+input, button, textarea {font-family: $fontfamily;}
+input::-ms-clear {display: none;}
+button {cursor: pointer;}
+button::-moz-focus-inner {padding: 0; border: 0;}
+a, a:visited {text-decoration: none; color: inherit}
+a:hover {text-decoration: none;}
+ul li{list-style: none;}
+img {vertical-align: top;}
+h1, h2, h3, h4, h5, h6 {font-weight: inherit; font-size: inherit;}
+//-webkit-overflow-scrolling: touch;
+//animation-play-state: paused !important;
+
+// Оболочка
+
+.wrapper {width: 100%; min-height: 100%; overflow: hidden;
+    &.loaded{}
+}
+
+// Основная сетка
+
+[class*="__container"] {max-width: $mw+px; margin: 0 auto; width: 100%;
+    @media (max-width:$md1+px) {max-width: 970px;}
+    @media (max-width:$md2+px) {max-width: 750px;}
+    @media (max-width:$md3+px) {max-width: none; padding: 0 10px;}
+}
+
+// Подключение файлов, стилей, страниц и элементов
+//@import "header.scss";
+
+// Переменные
+
+$black: #131313;
+$white: #ffffff;
+$grey: #6F6F6F;
+$red: #FF4040;
+$blue: #0057FF;
+
+// Основной блок
+
+.wrapper {
+  max-width: 1330px;
+  margin: 0 auto;
+}
+
+header {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  .logo {
+    margin-right: 50px;
+  }
+
+  .catalog-block {
+    display: flex;
+    margin-right: 10px;
+    button {
+      width: 128px;
+      height: 48px;
+      background: #CFF1FF;
+      border-radius: 8px;
+      font-family: 'Alegreya Sans';
+      font-style: normal;
+      font-weight: bold;
+      font-size: 16px;
+      color: #00A4EA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      span {
+        margin-left: 5px;
+        margin-top: 1px;
+      }
+    }
+  }
+
+  .search-block {
+    width: 41.5%;
+    height: 48px;
+    background: #F0F0F4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    img {
+        margin-left: 20px;
+        position: absolute;
+    }
+    input {
+        padding-left: 50px;
+        background: #F0F0F4;
+        border-radius: 8px;
+        width: 100%;
+        height: inherit;
+        font-size: 16px;
+    }
+    input::placeholder {
+        color: #969696;
+      }
+      
+  }
+
+  .city-block {
+    display: flex;
+    align-items: center;
+    p {
+        margin-left: 5px;
+    }
+  }
+
+  .mainNav {
+    margin-left: auto;
+    a {
+        margin-left: 40px;
+    }
+  }
+  
+}
+
+main {
+    .slider-block {
+        margin-top: 30px;
+    }
+
+    .popular-block, .profit-block, .news-block, .big_present-block, .promotions-block, .sees-block {
+        margin-top: 50px;      
+    }
+}
+
+.heading {
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.banners {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-block{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    .card {
+        width: 250px;
+        height: 457px;
+        font-size: 16px;
+        .pay-block {
+            color: #FF7575;
+            font-weight: bold;
+            padding-top: 10px;
+            span {
+                font-size: 14px;
+            }
+            p {
+                font-size: 32px;
+                margin-top: -5px;
+            }
+        }
+        .title {
+            font-weight: 500;
+            margin-top: 10px;
+            height: 73px;
+        }
+        .statusbar {
+            display: flex;
+            flex-direction: column;
+            span {
+                font-size: 12px;
+                font-weight: bold;
+                color: #969696;
+            }
+            input {
+                pointer-events: none;
+                border: none;
+                background: #F0F0F4;
+                height: 4px;
+                border-radius: 8px;
+                margin-top: 5px;
+            }
+            input::-moz-range-thumb {
+                opacity: 0;
+                background: #4CAF50;
+                cursor: pointer;
+            }
+            input::-webkit-slider-thumb {
+                opacity: 0;
+                background: #4CAF50;
+                cursor: pointer;
+            }
+        }
+                
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            bottom: 0;
+            span {
+                font-size: 16px;
+                font-weight: bold;
+            }
+            button {
+                font-size: 16px;
+                font-weight: bold;
+                color: white;
+                background: #00A4EA;
+                height: 40px;
+                width: 140px;
+                border-radius: 8px;
+            }
+        }
+    }
+}
+
+
+footer {
+    border-top: solid #F0F0F4 1px;
+    margin-top: 50px;
+    padding: 50px 0 50px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    .footer-left {
+        display: flex;
+        .right {
+            margin-right: 50px;
+        }
+        div {
+            display: flex;
+            align-items: left;
+            flex-direction: column;
+            h3 {
+                font-weight: bold;
+            }
+            div {
+                margin-top: 5px;
+                a {
+                    margin-top: 10px;
+                    max-width: 195px;
+                }
+            }
+        }
+        .social-network {
+            display: flex;
+            flex-direction: row;
+            width: auto;
+            a {
+                width: 30px;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .footer-right {
+        display: flex;
+        flex-direction: column;
+        span {
+            color: #969696;
+            margin-top: 20px;
+        }
+    }
+}
+
+// Подключение файлов UI стилей, форм и готовых классов
+//@import "forms.scss";
+//@import "ui.scss";
